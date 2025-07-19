@@ -48,9 +48,11 @@ static void usage(const char* name)
   printf("Performance test for XDMA SGDMA engine.\n\n");
 
   printf("  -%c (--%s) device\n", long_opts[i].val, long_opts[i].name); i++;
+  printf("  -%c (--%s) count\n", long_opts[i].val, long_opts[i].name); i++;
+  printf("  -%c (--%s) size\n", long_opts[i].val, long_opts[i].name); i++;
   printf("  -%c (--%s) incremental\n", long_opts[i].val, long_opts[i].name); i++;
   printf("  -%c (--%s) non-incremental\n", long_opts[i].val, long_opts[i].name); i++;
-  printf("  -%c (--%s) be more verbose during test\n", long_opts[i].val, long_opts[i].name); i++;
+  printf("  -%c (--%s) verbose\n", long_opts[i].val, long_opts[i].name); i++;
   printf("  -%c (--%s) print usage help and exit\n", long_opts[i].val, long_opts[i].name); i++;
 }
 

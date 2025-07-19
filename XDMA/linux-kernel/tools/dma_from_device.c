@@ -284,9 +284,9 @@ static int test_dma(char *devname, uint64_t addr, uint64_t aperture,
 		avg_time = (float)total_time/(float)count;
 		result = ((float)size)*1000/avg_time;
 		if (verbose)
-			printf("** Avg time device %s, total time %ld nsec, avg_time = %f, size = %lu, BW = %f \n",
+			printf("** Avg time device %s, total time %ld nsec, avg_time = %f nsec, size = %lu Byte, BW = %f MB/s\n",
 				devname, total_time, avg_time, size, result);
-		printf("%s ** Average BW = %lu, %f\n", devname, size, result);
+		printf("c2h Average BW = %f MB/s\n", result);
 		rc = 0;
 	} else if (eop_flush) {
 		/* allow underflow with -e option */
