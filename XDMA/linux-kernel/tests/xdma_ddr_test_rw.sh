@@ -19,13 +19,15 @@ tool_path=../tools
 
 # Write to all enabled h2cChannels in parallel
 
-addrOffset=0x200000000
+addrOffset=0x000000000
+#addrOffset=0x200000000
 
 $tool_path/dma_to_device -d /dev/xdma0_h2c_0\
 	-s $transferSz \
 	-a $addrOffset -c $transferCount &
 
-addrOffset=0x600000000
+addrOffset=0x400000000
+#addrOffset=0x600000000
 
 $tool_path/dma_from_device -d /dev/xdma0_c2h_0 \
 	-s $transferSz \
