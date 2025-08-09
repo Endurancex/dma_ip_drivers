@@ -23,11 +23,24 @@ rx_idx=$1
 addrOffset=$((0x400000000+0x200000000*rx_idx))
 echo "addr $addrOffset"
 
+output_file="data/rx${rx_idx}_data_510MB.bin"
+
 $tool_path/dma_from_device -d /dev/xdma0_c2h_0 \
-	-s $transferSz -f data/rx${rx_idx}_data_510MB.bin\
+	-s $transferSz -f "$output_file" \
 	-a $addrOffset -c $transferCount &
 
 # Wait for the last transaction to complete.
 wait
 
+input_file="data/tx${rx_idx}_data_510MB.bin"
+
+if cmp -s "$output_file" "$input_file"; then
+	echo "data matching"
+else
+	echo "data not matched"
+	echo "display the first 10 lines of differences"
+	hexdump -C "$output_file" | head -n 10 > data/rx.hex
+	hexdump -C "$input_file" | head -n 10 > data/tx.hex
+	diff data/rx.hex data/tx.hex
+fi
 exit 0
